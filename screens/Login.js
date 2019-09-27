@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
-import { ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet } from 'react-native'
-
+import { Alert,ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet } from 'react-native'
+import * as firebase from 'firebase';
 import { Button, Block, Input, Text } from '../components';
 import { theme } from '../constants';
 
-const VALID_EMAIL = "contact@react-ui-kit.com";
-const VALID_PASSWORD = "subscribe";
-
 export default class Login extends Component {
   state = {
-    email: VALID_EMAIL,
-    password: VALID_PASSWORD,
+    email: '',
+    password: '',
     errors: [],
     loading: false,
   }
@@ -23,19 +20,17 @@ export default class Login extends Component {
     Keyboard.dismiss();
     this.setState({ loading: true });
 
-    // check with backend API or with some static data
-    if (email !== VALID_EMAIL) {
-      errors.push('email');
-    }
-    if (password !== VALID_PASSWORD) {
-      errors.push('password');
-    }
-
-    this.setState({ errors, loading: false });
-
-    if (!errors.length) {
-      navigation.navigate("Browse");
-    }
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(
+      navigation.navigate('Browse')
+      )
+    .catch(() => {
+      navigation.navigate('Login')
+        Alert.alert(
+          'Error!',
+          'Wrong Email or Password'
+      )
+    })
   }
 
   render() {

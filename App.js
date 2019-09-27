@@ -39,7 +39,7 @@ export default class App extends React.Component {
   componentWillMount() {
     const firebaseConfig = {
       apiKey: 'AIzaSyAcbWY3M-qtQQdMbtI3wV8fPPAAo2_G1hE',
-      authDomain: '',
+      authDomain: 'extoserviceapp.firebaseapp.com',
     }
     firebase.initializeApp(firebaseConfig);
   }

@@ -3,7 +3,6 @@ import { Alert, ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet } 
 import * as firebase from 'firebase';
 import { Button, Block, Input, Text } from '../components';
 import { theme } from '../constants';
-import { fail } from 'assert';
 
 export default class SignUp extends Component {
   state = {
@@ -31,29 +30,27 @@ export default class SignUp extends Component {
 
     if (!errors.length) {
 
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then(
+      firebase.auth().createUserWithEmailAndPassword(email, password).then(
           Alert.alert(
             'Success!',
             'Your account has been created',
             [
               {
                 text: 'Continue', onPress: () => {
-                  navigation.navigate('Browse')
+                  navigation.navigate('Login')
                 }
               }
             ],
             { cancelable: false }
-          )
+          )).catch((error) =>{
 
+            Alert.alert(
+              'Error!',
+              'Email is already in use.Try another Email'
           )
-          .catch(() => this.setState({
-            authenticating: false,
-            user: null,
-            error: 'SignUp fail',
-          }))
-    }
+    })
   }
+}
 
   render() {
     const { navigation } = this.props;
