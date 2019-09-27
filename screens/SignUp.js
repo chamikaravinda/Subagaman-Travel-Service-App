@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Alert, ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet } from 'react-native';
-
+import * as firebase from 'firebase';
 import { Button, Block, Input, Text } from '../components';
 import { theme } from '../constants';
+import { fail } from 'assert';
 
 export default class SignUp extends Component {
   state = {
@@ -29,18 +30,28 @@ export default class SignUp extends Component {
     this.setState({ errors, loading: false });
 
     if (!errors.length) {
-      Alert.alert(
-        'Success!',
-        'Your account has been created',
-        [
-          {
-            text: 'Continue', onPress: () => {
-              navigation.navigate('Browse')
-            }
-          }
-        ],
-        { cancelable: false }
-      )
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(
+          Alert.alert(
+            'Success!',
+            'Your account has been created',
+            [
+              {
+                text: 'Continue', onPress: () => {
+                  navigation.navigate('Browse')
+                }
+              }
+            ],
+            { cancelable: false }
+          )
+
+          )
+          .catch(() => this.setState({
+            authenticating: false,
+            user: null,
+            error: 'SignUp fail',
+          }))
     }
   }
 
