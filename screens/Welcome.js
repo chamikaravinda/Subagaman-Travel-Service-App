@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, Image, FlatList, Modal, StyleSheet, ScrollView } from 'react-native';
+import firebase from 'firebase';
 
 import { Button, Block, Text } from '../components';
 import { theme } from '../constants';
@@ -9,6 +10,18 @@ const { width, height } = Dimensions.get('window');
 class Welcome extends Component {
   static navigationOptions = {
     header: null,
+  }
+
+  
+  componentWillMount() {
+    const { navigation } = this.props;
+    
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigation.navigate('Browse')
+      }
+   });
+
   }
 
   scrollX = new Animated.Value(0);

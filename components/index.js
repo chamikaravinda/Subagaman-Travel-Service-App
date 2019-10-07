@@ -7,5 +7,5 @@ import Text from "./Text";
 import Progress from "./Progress";
 import Divider from "./Divider";
 import Switch from "./Switch";
-
-export { Block, Badge, Button, Card, Input, Text, Progress, Divider, Switch };
+import SelectDistric from "./SelectDistric";
+export { Block, Badge, Button, Card, Input, Text,SelectDistric, Progress, Divider, Switch };

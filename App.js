@@ -6,7 +6,8 @@ import { Asset } from 'expo-asset'
 
 import Navigation from './navigation';
 import { Block } from './components';
-import * as firebase from 'firebase';
+import firebaseDb from './database/firebase'
+
 // import all used images
 const images = [
   require('./assets/icons/back.png'),
@@ -37,11 +38,7 @@ export default class App extends React.Component {
   }
 
   componentWillMount() {
-    const firebaseConfig = {
-      apiKey: 'AIzaSyAcbWY3M-qtQQdMbtI3wV8fPPAAo2_G1hE',
-      authDomain: 'extoserviceapp.firebaseapp.com',
-    }
-    firebase.initializeApp(firebaseConfig);
+    
   }
 
   handleResourcesAsync = async () => {

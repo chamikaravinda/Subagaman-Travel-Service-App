@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Alert,ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet } from 'react-native'
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { Button, Block, Input, Text } from '../components';
 import { theme } from '../constants';
 
@@ -12,6 +12,17 @@ export default class Login extends Component {
     loading: false,
   }
 
+  componentWillMount() {
+    const { navigation } = this.props;
+    
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigation.navigate('Browse')
+      }
+   });
+
+  }
+  
   handleLogin() {
     const { navigation } = this.props;
     const { email, password } = this.state;
@@ -22,7 +33,7 @@ export default class Login extends Component {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(
-      navigation.navigate('Browse')
+      navigation.navigate('Hoteldetails')
       )
     .catch(() => {
       navigation.navigate('Login')

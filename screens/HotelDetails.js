@@ -3,27 +3,28 @@ import { Alert, ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet } 
 import  firebase from 'firebase';
 import '@firebase/firestore';
 import firebaseDB from '../database/firebase'
-import { Button, Block, Input, Text } from '../components';
+import { Button, Block, Input, Text,SelectDistric} from '../components';
 import { theme } from '../constants';
 
 
-export default class SignUp extends Component {
+export default class Hoteldetails extends Component {
   state = {
-    email: null,
-    username: null,
+    address: null,
+    distric:null,
+    hotelname: null,
     password: null,
     errors: [],
     loading: false,
   }
 
   componentWillMount() {
-    const { navigation } = this.props;
+  //   const { navigation } = this.props;
 
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        navigation.navigate('Browse')
-      }
-   });
+  //   firebase.auth().onAuthStateChanged((user) => {
+  //     if (!user) {
+  //       navigation.navigate('Login')
+  //     }
+  //  });
 
   }
 
@@ -82,24 +83,33 @@ export default class SignUp extends Component {
 
     return (
       <KeyboardAvoidingView style={styles.signup} behavior="padding">
-        <Block padding={[0, theme.sizes.base * 2]}>
-          <Text h1 bold>Sign Up</Text>
+        <Block padding={[0, theme.sizes.base * 1]}>
+          <Text h1 bold>Hotel Details</Text>
           <Block middle>
-            <Input
-              email
-              label="Email"
-              error={hasErrors('email')}
-              style={[styles.input, hasErrors('email')]}
-              defaultValue={this.state.email}
-              onChangeText={text => this.setState({ email: text })}
+          <Input
+              label="Hotel Name"
+              error={hasErrors('hotelname')}
+              style={[styles.input, hasErrors('hotelname')]}
+              defaultValue={this.state.hotelname}
+              onChangeText={text => this.setState({ hotelname: text })}
             />
-            <Input
-              label="Username"
-              error={hasErrors('username')}
-              style={[styles.input, hasErrors('username')]}
-              defaultValue={this.state.username}
-              onChangeText={text => this.setState({ username: text })}
+
+            <SelectDistric
+              label="Distric"
+              error={hasErrors('distric')}
+              style={[styles.input, hasErrors('distric')]}
+              defaultValue={this.state.hotelname}
+              onChangeText={text => this.setState({ hotelname: text })}
             />
+
+            <Input
+              label="Address"
+              error={hasErrors('address')}
+              style={[styles.input, hasErrors('address')]}
+              defaultValue={this.state.address}
+              onChangeText={text => this.setState({ address: text })}
+            />
+
             <Input
               secure
               label="Password"
@@ -111,15 +121,10 @@ export default class SignUp extends Component {
             <Button gradient onPress={() => this.handleSignUp()}>
               {loading ?
                 <ActivityIndicator size="small" color="white" /> :
-                <Text bold white center>Sign Up</Text>
+                <Text bold white center>Save</Text>
               }
             </Button>
 
-            <Button onPress={() => navigation.navigate('Login')}>
-              <Text gray caption center style={{ textDecorationLine: 'underline' }}>
-                Back to Login
-              </Text>
-            </Button>
           </Block>
         </Block>
       </KeyboardAvoidingView>
@@ -140,5 +145,21 @@ const styles = StyleSheet.create({
   },
   hasErrors: {
     borderBottomColor: theme.colors.accent,
-  }
+  },Picker: {
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: theme.colors.black,
+    borderRadius: theme.sizes.radius,
+    fontSize: theme.sizes.font,
+    fontWeight: '500',
+    color: theme.colors.black,
+    height: theme.sizes.base * 3,
+  },
+  toggle: {
+    position: 'absolute',
+    alignItems: 'flex-end',
+    width: theme.sizes.base * 2,
+    height: theme.sizes.base * 2,
+    top: theme.sizes.base,
+    right: 0,
+  } 
 })

@@ -7,6 +7,10 @@ import { theme, mocks } from '../constants';
 const { width } = Dimensions.get('window');
 
 class Browse extends Component {
+  static navigationOptions = {
+    header: null,
+  }
+  
   state = {
     active: 'Products',
     categories: [],
