@@ -83,7 +83,7 @@ export default class SignUp extends Component {
             if(this.state.bussinesType==='hotel'){
               navigation.navigate('Hoteldetails')
             }else if(this.state.bussinesType==='car'){
-              navigation.navigate('CardDetail')
+              navigation.navigate('CarDetail')
             }else if(this.state.bussinesType==='guide'){
               navigation.navigate('GuideDetails')
             }

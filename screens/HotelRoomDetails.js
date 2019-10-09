@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, StyleSheet, ScrollView, TextInput,ActivityIndicator,KeyboardAvoidingView,Picker } from 'react-native'
+import {Alert, Image, StyleSheet, ScrollView, TextInput,ActivityIndicator,KeyboardAvoidingView,Picker } from 'react-native'
 import Slider from 'react-native-slider';
 import  firebase from 'firebase';
 import '@firebase/firestore';
@@ -40,9 +40,34 @@ class HotelRoomDetails extends Component {
     const { navigation } = this.props;
     const errors = [];
 
-    firebase.auth().signOut();
-    navigation.navigate('Login');
-
+    Alert.alert(
+      'Success!',
+      'Your account has been created,Now add the hotel details please',
+      [
+        {
+          text: 'Add Another', onPress: () => {
+            navigation.navigate('HotelRoomDetails');
+          }
+        },
+        {
+          text: 'Finish', onPress: () => {
+              Alert.alert(
+                'Success!',
+                'Your account creation is compleat.Our team will contact you with the login details',
+                [
+                  {
+                    text: 'Continue', onPress: () => {
+                        navigation.navigate('Welcome')
+                    }
+                  }
+                ],
+                { cancelable: false }
+              )
+          }
+        }
+      ],
+      { cancelable: false }
+    )
   }
 
   toggleEdit(name) {
@@ -128,22 +153,6 @@ class HotelRoomDetails extends Component {
               <Block>
                 <Block flex={false}>
                     <Text gray2>Type</Text>
-                </Block>
-                <Picker
-                  selectedValue={this.state.distric}
-                  style={{fontSize: theme.sizes.font,
-                    fontWeight: '500',
-                    color: theme.colors.black }}
-                  onValueChange={(itemValue, itemIndex) => this.setState({ bussinesType: distric })}>
-                    <Picker.Item label="A/C" value="colombo"/>
-                    <Picker.Item label="Non A/C" value="anuradhapura"/>
-                </Picker>
-              </Block>
-            </Block>
-            <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
-              <Block>
-                <Block flex={false}>
-                    <Text gray2>A/C or Non A/C</Text>
                 </Block>
                 <Picker
                   selectedValue={this.state.distric}

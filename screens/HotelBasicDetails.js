@@ -6,6 +6,7 @@ import '@firebase/firestore';
 import firebaseDB from '../database/firebase'
 import { Divider, Button, Block, Text, Switch,Input } from '../components';
 import { theme, mocks } from '../constants';
+import LocationView from "react-native-location-view";
 
 class HotelBasicDetails extends Component {
   state = {
@@ -73,7 +74,7 @@ class HotelBasicDetails extends Component {
     return (
       <Block>
         <Block flex={false} row center space="between" style={styles.header}>
-          <Text h1 bold>Tour Guide Details</Text>
+          <Text h1 bold>Hotel Details</Text>
         </Block>
 
         <KeyboardAvoidingView style={styles.signup} behavior="padding">
@@ -119,6 +120,18 @@ class HotelBasicDetails extends Component {
                 </Picker>
               </Block>
             </Block>
+            <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
+              <Block style={[styles.map]}>
+                  <LocationView
+                    apiKey={"AIzaSyB-7L9NiD19vCCeCIxDC_tzDmAZ4MUW22g"}
+                    initialLocation={{
+                      latitude: 37.78825,
+                      longitude: -122.4324,
+                    }}
+                    actionText="Add Location"
+                  />
+              </Block>
+            </Block> 
             <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
               <Block>
                 <Input
@@ -188,5 +201,7 @@ const styles = StyleSheet.create({
   },
   hasErrors: {
     borderBottomColor: theme.colors.accent,
+  },map:{
+    height:theme.sizes.base * 22
   }
 })
