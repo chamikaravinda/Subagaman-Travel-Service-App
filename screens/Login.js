@@ -10,14 +10,16 @@ export default class Login extends Component {
     password: '',
     errors: [],
     loading: false,
+    isHoteldetails:false
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { navigation } = this.props;
     
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         navigation.navigate('Browse')
+        //get hotel details and make this.state.isHotelDetails true; 
       }
    });
 
@@ -32,9 +34,13 @@ export default class Login extends Component {
     this.setState({ loading: true });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(
-      navigation.navigate('Hoteldetails')
-      )
+    .then( ()=>{
+      if(isHoteldetails){
+        navigation.navigate('Browse')
+      }else{
+        navigation.navigate('Hoteldetails')
+      }
+    })
     .catch(() => {
       navigation.navigate('Login')
         Alert.alert(

@@ -86,10 +86,12 @@ export default class SelectDistric extends Component {
         {this.renderLabel()}
         <Picker
               selectedValue={this.state.language}
-              style={{styles}}
+              itemTextStyle={{fontSize: 15}}
+              activeItemTextStyle={{fontSize: 18, fontWeight: 'bold'}}
               onValueChange={(itemValue, itemIndex) => this.setState({ language: itemValue })}>
-              <Picker.Item label="Java" value="java" />
-              <Picker.Item label="JavaScript" value="js" />
+              <Picker.Item label="Colombo" value="Colombo"/>
+              <Picker.Item label="Ratnapura" value="Ratnapura" />
+              <Picker.Item label="Kandy" value="Kandy" />
         </Picker>
         {this.renderToggle()}
         {this.renderRight()}
@@ -98,8 +100,18 @@ export default class SelectDistric extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   input: {
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: theme.colors.black,
+    borderRadius: theme.sizes.radius,
+    fontSize: theme.sizes.font,
+    fontWeight: '500',
+    color: theme.colors.black,
+    height: theme.sizes.base * 3,
+  },
+  itemStyle: {
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: theme.colors.black,
     borderRadius: theme.sizes.radius,
@@ -116,7 +128,7 @@ const styles = StyleSheet.create({
     top: theme.sizes.base,
     right: 0,
   },
-  Picker: {
+  pickerStyleType: {
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: theme.colors.black,
     borderRadius: theme.sizes.radius,

@@ -13,7 +13,7 @@ class Welcome extends Component {
   }
 
   
-  componentWillMount() {
+  componentDidMount() {
     const { navigation } = this.props;
     
     firebase.auth().onAuthStateChanged((user) => {

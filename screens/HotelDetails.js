@@ -12,7 +12,7 @@ export default class Hoteldetails extends Component {
     address: null,
     distric:null,
     hotelname: null,
-    password: null,
+    boiNumber: null,
     errors: [],
     loading: false,
   }
@@ -111,12 +111,11 @@ export default class Hoteldetails extends Component {
             />
 
             <Input
-              secure
-              label="Password"
-              error={hasErrors('password')}
-              style={[styles.input, hasErrors('password')]}
-              defaultValue={this.state.password}
-              onChangeText={text => this.setState({ password: text })}
+              label="BOI Number"
+              error={hasErrors('boiNumber')}
+              style={[styles.input, hasErrors('boiNumber')]}
+              defaultValue={this.state.boiNumber}
+              onChangeText={text => this.setState({ boiNumber: text })}
             />
             <Button gradient onPress={() => this.handleSignUp()}>
               {loading ?

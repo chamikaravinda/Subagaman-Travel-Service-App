@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Image, StyleSheet, ScrollView, TextInput } from 'react-native'
+import { Image, StyleSheet, ScrollView, TextInput,ActivityIndicator } from 'react-native'
 import Slider from 'react-native-slider';
-
+import  firebase from 'firebase';
+import '@firebase/firestore';
+import firebaseDB from '../database/firebase'
 import { Divider, Button, Block, Text, Switch } from '../components';
 import { theme, mocks } from '../constants';
 
@@ -24,6 +26,15 @@ class Settings extends Component {
     profile[name] = text;
 
     this.setState({ profile });
+  }
+
+  handleLogOut() {
+    const { navigation } = this.props;
+    const errors = [];
+
+    firebase.auth().signOut();
+    navigation.navigate('Login');
+
   }
 
   toggleEdit(name) {
@@ -134,16 +145,15 @@ class Settings extends Component {
                 onValueChange={value => this.setState({ notifications: value })}
               />
             </Block>
-            
-            <Block row center space="between" style={{ marginBottom: theme.sizes.base * 2 }}>
-              <Text gray2>Newsletter</Text>
-              <Switch
-                value={this.state.newsletter}
-                onValueChange={value => this.setState({ newsletter: value })}
-              />
-            </Block>
           </Block>
 
+          <Divider margin={[theme.sizes.base, theme.sizes.base * 2]} />
+          
+          <Block middle style={styles.toggles}>
+            <Button gradient onPress={() => this.handleLogOut()}>
+                <Text bold white center>LogOut</Text>
+            </Button>
+          </Block>
         </ScrollView>
       </Block>
     )

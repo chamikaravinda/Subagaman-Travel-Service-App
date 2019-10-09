@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Dimensions, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
-
+import firebase from 'firebase';
 import { Card, Badge, Button, Block, Text } from '../components';
 import { theme, mocks } from '../constants';
 
@@ -18,6 +18,13 @@ class Browse extends Component {
 
   componentDidMount() {
     this.setState({ categories: this.props.categories });
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        navigation.navigate('Browse')
+      }
+   });
+    
   }
 
   handleTab = tab => {
