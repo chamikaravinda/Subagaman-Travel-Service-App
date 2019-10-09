@@ -84,6 +84,8 @@ export default class SignUp extends Component {
               navigation.navigate('Hoteldetails')
             }else if(this.state.bussinesType==='car'){
               navigation.navigate('CardDetail')
+            }else if(this.state.bussinesType==='guide'){
+              navigation.navigate('GuideDetails')
             }
             
           }
@@ -142,7 +144,7 @@ export default class SignUp extends Component {
                 <Picker.Item label="Select Bussiness Type" value=""/>
                 <Picker.Item label="Hotel" value="hotel"/>
                 <Picker.Item label="Car Rental" value="car" />
-                <Picker.Item label="Tour Guid" value="guid" />
+                <Picker.Item label="Tour Guid" value="guide" />
             </Picker>
 
             <Button gradient onPress={() => this.handleSignUp()}>

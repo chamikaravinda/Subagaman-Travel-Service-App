@@ -142,8 +142,8 @@ class Welcome extends Component {
       <Block>
         <Block center bottom flex={0.4}>
           <Text h1 center bold>
-            Your Home.
-            <Text h1 primary> Greener.</Text>
+            WOW.
+            <Text h1 primary> Trips.</Text>
           </Text>
           <Text h3 gray2 style={{ marginTop: theme.sizes.padding / 2 }}>
             Enjoy the experience.

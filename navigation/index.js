@@ -11,9 +11,9 @@ import Browse from '../screens/Browse';
 import Product from '../screens/Product';
 import Settings from '../screens/Settings';
 import Hoteldetails from '../screens/HotelDetails';
-import CardDetail from '../screens/CarDetails'
-
-
+import CarDetail from '../screens/CarDetails';
+import GuideDetails from '../screens/GuideDetails';
+import HotelRoomDetails from '../screens/HotelRoomDetails';
 import { theme } from '../constants';
 
 const screens = createStackNavigator({
@@ -26,7 +26,9 @@ const screens = createStackNavigator({
   Product,
   Settings,
   Hoteldetails,
-  CardDetail
+  CarDetail,
+  GuideDetails,
+  HotelRoomDetails
 }, {
   defaultNavigationOptions: {
     headerStyle: {

@@ -7,7 +7,7 @@ import firebaseDB from '../database/firebase'
 import { Divider, Button, Block, Text, Switch,Input } from '../components';
 import { theme, mocks } from '../constants';
 
-class Settings extends Component {
+class CarDetails extends Component {
   state = {
     budget: 850,
     monthly: 1700,
@@ -187,11 +187,11 @@ class Settings extends Component {
   }
 }
 
-Settings.defaultProps = {
+CarDetails.defaultProps = {
   profile: mocks.profile,
 }
 
-export default Settings;
+export default CarDetails;
 
 const styles = StyleSheet.create({
   header: {

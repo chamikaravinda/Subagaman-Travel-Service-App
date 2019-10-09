@@ -7,7 +7,7 @@ import firebaseDB from '../database/firebase'
 import { Divider, Button, Block, Text, Switch,Input } from '../components';
 import { theme, mocks } from '../constants';
 
-class Hoteldetails extends Component {
+class HotelRoomDetails extends Component {
   state = {
     budget: 850,
     monthly: 1700,
@@ -36,10 +36,12 @@ class Hoteldetails extends Component {
     this.setState({ profile });
   }
 
-  handleSave() {
+  handleAddRoomDetails() {
     const { navigation } = this.props;
     const errors = [];
-    navigation.navigate('HotelRoomDetails');
+
+    firebase.auth().signOut();
+    navigation.navigate('Login');
 
   }
 
@@ -72,7 +74,7 @@ class Hoteldetails extends Component {
     return (
       <Block>
         <Block flex={false} row center space="between" style={styles.header}>
-          <Text h1 bold>Hotel Details</Text>
+          <Text h1 bold>Add Room</Text>
         </Block>
 
         <KeyboardAvoidingView style={styles.signup} behavior="padding">
@@ -81,7 +83,7 @@ class Hoteldetails extends Component {
             <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
               <Block>
                   <Input
-                  label="Hotel Name"
+                  label="Room Name"
                   error={hasErrors('hotelname')}
                   style={[styles.input, hasErrors('hotelname')]}
                   defaultValue={this.state.hotelname}
@@ -92,36 +94,7 @@ class Hoteldetails extends Component {
             <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
               <Block>
                 <Input
-                    label="Address"
-                    error={hasErrors('vehical10Kfee')}
-                    style={[styles.input, hasErrors('vehical10Kfee')]}
-                    defaultValue={this.state.vehicalNumber}
-                    onChangeText={text => this.setState({ vehical10Kfee: text })}
-                    />
-              </Block>
-            </Block>
-            <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
-              <Block>
-                <Block flex={false}>
-                    <Text gray2>Base Distric</Text>
-                </Block>
-                <Picker
-                  selectedValue={this.state.distric}
-                  style={{fontSize: theme.sizes.font,
-                    fontWeight: '500',
-                    color: theme.colors.black }}
-                  onValueChange={(itemValue, itemIndex) => this.setState({ distric: itemValue })}>
-                    <Picker.Item label="Colombo" value="colombo"/>
-                    <Picker.Item label="Anuradhapura" value="anuradhapura"/>
-                    <Picker.Item label="Kandy" value="Kandy" />
-                    <Picker.Item label="Jaffna" value="jaffna" />
-                </Picker>
-              </Block>
-            </Block>
-            <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
-              <Block>
-                <Input
-                    label="BOI Number"
+                    label="No of Beds"
                     error={hasErrors('vehicalOwnerAddress')}
                     style={[styles.input, hasErrors('vehicalOwnerAddress')]}
                     defaultValue={this.state.vehicalNumber}
@@ -129,9 +102,78 @@ class Hoteldetails extends Component {
                     />
               </Block>
             </Block> 
+            <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
+              <Block>
+                <Input
+                    label="Half Board Price "
+                    error={hasErrors('vehicalOwnerAddress')}
+                    style={[styles.input, hasErrors('vehicalOwnerAddress')]}
+                    defaultValue={this.state.vehicalNumber}
+                    onChangeText={text => this.setState({ vehicalOwnerAddress: text })}
+                    />
+              </Block>
+            </Block> 
+            <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
+              <Block>
+                <Input
+                    label="Full Board Price"
+                    error={hasErrors('vehicalOwnerAddress')}
+                    style={[styles.input, hasErrors('vehicalOwnerAddress')]}
+                    defaultValue={this.state.vehicalNumber}
+                    onChangeText={text => this.setState({ vehicalOwnerAddress: text })}
+                    />
+              </Block>
+            </Block>
+            <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
+              <Block>
+                <Block flex={false}>
+                    <Text gray2>Type</Text>
+                </Block>
+                <Picker
+                  selectedValue={this.state.distric}
+                  style={{fontSize: theme.sizes.font,
+                    fontWeight: '500',
+                    color: theme.colors.black }}
+                  onValueChange={(itemValue, itemIndex) => this.setState({ bussinesType: distric })}>
+                    <Picker.Item label="A/C" value="colombo"/>
+                    <Picker.Item label="Non A/C" value="anuradhapura"/>
+                </Picker>
+              </Block>
+            </Block>
+            <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
+              <Block>
+                <Block flex={false}>
+                    <Text gray2>A/C or Non A/C</Text>
+                </Block>
+                <Picker
+                  selectedValue={this.state.distric}
+                  style={{fontSize: theme.sizes.font,
+                    fontWeight: '500',
+                    color: theme.colors.black }}
+                  onValueChange={(itemValue, itemIndex) => this.setState({ bussinesType: distric })}>
+                    <Picker.Item label="A/C" value="colombo"/>
+                    <Picker.Item label="Non A/C" value="anuradhapura"/>
+                </Picker>
+              </Block>
+            </Block>
+            <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
+              <Block>
+                <Block flex={false}>
+                    <Text gray2>Description</Text>
+                </Block>
+                <TextInput
+                  style={styles.textArea}
+                  underlineColorAndroid="transparent"
+                  placeholder="Add your room description"
+                  placeholderTextColor="grey"
+                  numberOfLines={10}
+                  multiline={true}
+                />
+              </Block>
+            </Block>
             <Block middle style={styles.toggles}>
-              <Button gradient onPress={() => this.handleSave()}>
-                  <Text bold white center>Continue</Text>
+              <Button gradient onPress={() => this.handleAddRoomDetails()}>
+                  <Text bold white center>Add Room</Text>
               </Button>
             </Block>         
           </Block>         
@@ -142,11 +184,11 @@ class Hoteldetails extends Component {
   }
 }
 
-Hoteldetails.defaultProps = {
+HotelRoomDetails.defaultProps = {
   profile: mocks.profile,
 }
 
-export default Hoteldetails;
+export default HotelRoomDetails;
 
 const styles = StyleSheet.create({
   header: {
@@ -187,5 +229,14 @@ const styles = StyleSheet.create({
   },
   hasErrors: {
     borderBottomColor: theme.colors.accent,
+  },
+  textAreaContainer: {
+    borderColor:  theme.colors.gray2,
+    borderWidth: 3,
+    padding: 5
+  },
+  textArea: {
+    height: 100,
+    justifyContent: "flex-start"
   }
 })
