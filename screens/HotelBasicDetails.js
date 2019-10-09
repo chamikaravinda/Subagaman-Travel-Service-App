@@ -7,7 +7,7 @@ import firebaseDB from '../database/firebase'
 import { Divider, Button, Block, Text, Switch,Input } from '../components';
 import { theme, mocks } from '../constants';
 
-class Hoteldetails extends Component {
+class HotelBasicDetails extends Component {
   state = {
     budget: 850,
     monthly: 1700,
@@ -39,8 +39,9 @@ class Hoteldetails extends Component {
   handleSave() {
     const { navigation } = this.props;
     const errors = [];
-    navigation.navigate('HotelRoomDetails');
 
+    firebase.auth().signOut();
+    navigation.navigate('HotelRoomDetails');
   }
 
   toggleEdit(name) {
@@ -72,7 +73,7 @@ class Hoteldetails extends Component {
     return (
       <Block>
         <Block flex={false} row center space="between" style={styles.header}>
-          <Text h1 bold>Hotel Details</Text>
+          <Text h1 bold>Tour Guide Details</Text>
         </Block>
 
         <KeyboardAvoidingView style={styles.signup} behavior="padding">
@@ -80,7 +81,7 @@ class Hoteldetails extends Component {
           <Block style={styles.inputs}>
             <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
               <Block>
-                  <Input
+              <Input
                   label="Hotel Name"
                   error={hasErrors('hotelname')}
                   style={[styles.input, hasErrors('hotelname')]}
@@ -91,14 +92,14 @@ class Hoteldetails extends Component {
             </Block>
             <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
               <Block>
-                <Input
+              <Input
                     label="Address"
                     error={hasErrors('vehical10Kfee')}
                     style={[styles.input, hasErrors('vehical10Kfee')]}
                     defaultValue={this.state.vehicalNumber}
                     onChangeText={text => this.setState({ vehical10Kfee: text })}
                     />
-              </Block>
+            </Block>
             </Block>
             <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
               <Block>
@@ -110,7 +111,7 @@ class Hoteldetails extends Component {
                   style={{fontSize: theme.sizes.font,
                     fontWeight: '500',
                     color: theme.colors.black }}
-                  onValueChange={(itemValue, itemIndex) => this.setState({ distric: itemValue })}>
+                    onValueChange={(itemValue, itemIndex) => this.setState({ distric: itemValue })}>
                     <Picker.Item label="Colombo" value="colombo"/>
                     <Picker.Item label="Anuradhapura" value="anuradhapura"/>
                     <Picker.Item label="Kandy" value="Kandy" />
@@ -121,12 +122,12 @@ class Hoteldetails extends Component {
             <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
               <Block>
                 <Input
-                    label="BOI Number"
-                    error={hasErrors('vehicalOwnerAddress')}
-                    style={[styles.input, hasErrors('vehicalOwnerAddress')]}
-                    defaultValue={this.state.vehicalNumber}
-                    onChangeText={text => this.setState({ vehicalOwnerAddress: text })}
-                    />
+                      label="BOI Number"
+                      error={hasErrors('vehicalOwnerAddress')}
+                      style={[styles.input, hasErrors('vehicalOwnerAddress')]}
+                      defaultValue={this.state.vehicalNumber}
+                      onChangeText={text => this.setState({ vehicalOwnerAddress: text })}
+                      />
               </Block>
             </Block> 
             <Block middle style={styles.toggles}>
@@ -142,11 +143,11 @@ class Hoteldetails extends Component {
   }
 }
 
-Hoteldetails.defaultProps = {
+HotelBasicDetails.defaultProps = {
   profile: mocks.profile,
 }
 
-export default Hoteldetails;
+export default HotelBasicDetails;
 
 const styles = StyleSheet.create({
   header: {

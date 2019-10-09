@@ -10,7 +10,7 @@ import Explore from '../screens/Explore';
 import Browse from '../screens/Browse';
 import Product from '../screens/Product';
 import Settings from '../screens/Settings';
-import Hoteldetails from '../screens/HotelDetails';
+import Hoteldetails from '../screens/HotelBasicDetails';
 import CarDetail from '../screens/CarDetails';
 import GuideDetails from '../screens/GuideDetails';
 import HotelRoomDetails from '../screens/HotelRoomDetails';
