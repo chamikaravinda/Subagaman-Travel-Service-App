@@ -30,24 +30,26 @@ export default class Login extends Component {
     const { email, password } = this.state;
     const errors = [];
 
-    Keyboard.dismiss();
-    this.setState({ loading: true });
+    // Keyboard.dismiss();
+    // this.setState({ loading: true });
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then( ()=>{
-      if(isHoteldetails){
-        navigation.navigate('Browse')
-      }else{
-        navigation.navigate('Hoteldetails')
-      }
-    })
-    .catch(() => {
-      navigation.navigate('Login')
-        Alert.alert(
-          'Error!',
-          'Wrong Email or Password'
-      )
-    })
+    // firebase.auth().signInWithEmailAndPassword(email, password)
+    // .then( ()=>{
+    //   if(isHoteldetails){
+    //     navigation.navigate('Browse')
+    //   }else{
+    //     navigation.navigate('Hoteldetails')
+    //   }
+    // })
+    // .catch(() => {
+    //   navigation.navigate('Login')
+    //     Alert.alert(
+    //       'Error!',
+    //       'Wrong Email or Password'
+    //   )
+    // })
+
+    navigation.navigate('Browse');
   }
 
   render() {

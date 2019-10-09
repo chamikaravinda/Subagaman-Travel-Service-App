@@ -64,7 +64,7 @@ class Browse extends Component {
     return (
       <Block>
         <Block flex={false} row center space="between" style={styles.header}>
-          <Text h1 bold>Browse</Text>
+          <Text h1 bold>WOW Trips</Text>
           <Button onPress={() => navigation.navigate('Settings')}>
             <Image
               source={profile.avatar}
@@ -113,6 +113,7 @@ export default Browse;
 const styles = StyleSheet.create({
   header: {
     paddingHorizontal: theme.sizes.base * 2,
+    marginTop:80
   },
   avatar: {
     height: theme.sizes.base * 2.2,
