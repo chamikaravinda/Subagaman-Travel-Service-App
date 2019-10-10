@@ -7,7 +7,7 @@ import { theme, mocks } from '../constants';
 
 const { width, height } = Dimensions.get('window');
 
-class Product extends Component {
+class Orders extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerRight: (
@@ -90,11 +90,11 @@ class Product extends Component {
   }
 }
 
-Product.defaultProps = {
+Orders.defaultProps = {
   product: mocks.products[0],
 }
 
-export default Product;
+export default Orders;
 
 const styles = StyleSheet.create({
   product: {

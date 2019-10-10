@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, StyleSheet, ScrollView, TextInput,ActivityIndicator,KeyboardAvoidingView,Picker } from 'react-native'
+import { Alert,Image, StyleSheet, ScrollView, TextInput,ActivityIndicator,KeyboardAvoidingView,Picker } from 'react-native'
 import Slider from 'react-native-slider';
 import  firebase from 'firebase';
 import '@firebase/firestore';
@@ -41,8 +41,18 @@ class HotelBasicDetails extends Component {
     const { navigation } = this.props;
     const errors = [];
 
-    firebase.auth().signOut();
-    navigation.navigate('HotelRoomDetails');
+    Alert.alert(
+      'Success!',
+      'Finish Creating the account.Your login details will recive via email',
+      [
+        {
+          text: 'Finish', onPress: () => {
+            navigation.navigate('Login');
+          }
+        }
+      ],
+      { cancelable: false }
+    )   
   }
 
   toggleEdit(name) {
@@ -145,7 +155,7 @@ class HotelBasicDetails extends Component {
             </Block> 
             <Block middle style={styles.toggles}>
               <Button gradient onPress={() => this.handleSave()}>
-                  <Text bold white center>Continue</Text>
+                  <Text bold white center>Save</Text>
               </Button>
             </Block>         
           </Block>         

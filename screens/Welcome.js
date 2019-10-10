@@ -142,11 +142,11 @@ class Welcome extends Component {
       <Block>
         <Block center bottom flex={0.4}>
           <Text h1 center bold>
-            WOW.
-            <Text h1 primary> Trips.</Text>
+            WOW
+            <Text h1 primary> Trips</Text>
           </Text>
           <Text h3 gray2 style={{ marginTop: theme.sizes.padding / 2 }}>
-            Enjoy the experience.
+            Afford Your Trip.
           </Text>
         </Block>
         <Block center middle>

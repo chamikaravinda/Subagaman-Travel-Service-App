@@ -3,15 +3,12 @@ import { Dimensions, Image, StyleSheet, ScrollView, TouchableOpacity } from 'rea
 import firebase from 'firebase';
 import { Card, Badge, Button, Block, Text } from '../components';
 import { theme, mocks } from '../constants';
-import OrderIcon from '../assets/icons/order.png'
-import serivceIcon from '../assets/icons/service.png'
-import earnIcon from '../assets/icons/earn.png'
-import addOrderIcon from '../assets/icons/add_order.png'
-
+import addIcon from '../assets/icons/add.png'
+import roomIcon from '../assets/icons/room.png'
 
 const { width } = Dimensions.get('window');
 
-class Browse extends Component {
+class Service extends Component {
   static navigationOptions = {
     header: null,
   }
@@ -81,38 +78,23 @@ class Browse extends Component {
         {/* <Block flex={false} row style={styles.tabs}>
           {tabs.map(tab => this.renderTab(  ))}
         </Block> */}
+          <Block flex={false} row center space="between" style={styles.subHeader}>
+            <Text h3>Your Orders</Text>
+          </Block>
 
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{ paddingVertical: theme.sizes.base * 2}}
         >
-
-
-          {/* <Block flex={false} row space="between" style={styles.categories}>
-            {categories.map(category => (
-              <TouchableOpacity
-                key={category.name}
-                onPress={() => navigation.navigate('Explore', { category })}
-              >
-                <Card center middle shadow style={styles.category}>
-                  <Badge margin={[0, 0, 15]} size={50} color="rgba(41,216,143,0.20)">
-                    <Image source={category.image} />
-                  </Badge>
-                  <Text medium height={20}>{category.name}</Text>
-                  <Text gray caption>{category.count} products</Text>
-                </Card>
-              </TouchableOpacity>
-            ))}
-          </Block> */}
               <Block flex={false} row space="between" style={styles.categories}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('Orders')}
+                onPress={() => navigation.navigate('HotelRoomDetails')}
               >
                 <Card center middle shadow style={styles.category}>
                   <Badge margin={[0, 0, 15]} size={50} color="#FFFFFF">
-                    <Image source={OrderIcon} />
+                    <Image source={addIcon} />
                   </Badge>
-                  <Text medium height={20}>Orders</Text>
+                  <Text medium height={20}>Add New Room</Text>
                 </Card>
               </TouchableOpacity>
               <TouchableOpacity
@@ -120,43 +102,44 @@ class Browse extends Component {
               >
                 <Card center middle shadow style={styles.category}>
                   <Badge margin={[0, 0, 15]} size={50} color="#FFFFFF">
-                    <Image source={serivceIcon} />
+                    <Image source={roomIcon} />
                   </Badge>
-                  <Text medium height={20}>Service</Text>
+                  <Text medium height={20}>Luxury Double Room</Text>
                 </Card>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => navigation.navigate('Earnings')}
+                onPress={() => navigation.navigate('Explore', { category })}
               >
                 <Card center middle shadow style={styles.category}>
                   <Badge margin={[0, 0, 15]} size={50} color="#FFFFFF">
-                    <Image source={earnIcon} />
+                    <Image source={roomIcon} />
                   </Badge>
-                  <Text medium height={20}>Earnings</Text>
+                  <Text medium height={20}>Basic Single Room</Text>
                 </Card>
                 </TouchableOpacity>
                 <TouchableOpacity
                 onPress={() => navigation.navigate('Explore', { category })}
               ><Card center middle shadow style={styles.category}>
                   <Badge margin={[0, 0, 15]} size={50} color="#FFFFFF">
-                    <Image source={addOrderIcon} />
+                    <Image source={roomIcon} />
                   </Badge>
-                  <Text medium height={20}>New Order</Text>
+                  <Text medium height={20}>Luxury Single Room</Text>
                 </Card>
                 </TouchableOpacity>
               </Block>
+
         </ScrollView>
       </Block>
     )
   }
 }
 
-Browse.defaultProps = {
+Service.defaultProps = {
   profile: mocks.profile,
   categories: mocks.categories,
 }
 
-export default Browse;
+export default Service;
 
 const styles = StyleSheet.create({
   header: {

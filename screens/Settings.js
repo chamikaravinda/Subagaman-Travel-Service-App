@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, StyleSheet, ScrollView, TextInput,ActivityIndicator } from 'react-native'
+import { Image, StyleSheet, ScrollView, TextInput,ActivityIndicator,Picker } from 'react-native'
 import Slider from 'react-native-slider';
 import  firebase from 'firebase';
 import '@firebase/firestore';
@@ -63,7 +63,7 @@ class Settings extends Component {
     return (
       <Block>
         <Block flex={false} row center space="between" style={styles.header}>
-          <Text h1 bold>Settings</Text>
+          <Text h1 bold>Profile</Text>
           <Button>
             <Image
               source={profile.avatar}
@@ -73,10 +73,19 @@ class Settings extends Component {
         </Block>
 
         <ScrollView showsVerticalScrollIndicator={false}>
+          <Block style={styles.toggles}>
+              <Block row center space="between" style={{ marginBottom: theme.sizes.base * 2, marginTop: theme.sizes.base * 2 }}>
+                <Text gray2>Service Availability</Text>
+                <Switch
+                  value={this.state.notifications}
+                  onValueChange={value => this.setState({ notifications: value })}
+                />
+              </Block>
+          </Block>
           <Block style={styles.inputs}>
             <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
               <Block>
-                <Text gray2 style={{ marginBottom: 10 }}>Username</Text>
+                <Text gray2 style={{ marginBottom: 10 }}>Name</Text>
                 {this.renderEdit('username')}
               </Block>
               <Text medium secondary onPress={() => this.toggleEdit('username')}>
@@ -85,24 +94,18 @@ class Settings extends Component {
             </Block>
             <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
               <Block>
-                <Text gray2 style={{ marginBottom: 10 }}>Location</Text>
+                <Text gray2 style={{ marginBottom: 10 }}>Email</Text>
                 {this.renderEdit('location')}
               </Block>
               <Text medium secondary onPress={() => this.toggleEdit('location')}>
                 {editing === 'location' ? 'Save' : 'Edit'}
               </Text>
             </Block>
-            <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
-              <Block>
-                <Text gray2 style={{ marginBottom: 10 }}>E-mail</Text>
-                <Text bold>{profile.email}</Text>
-              </Block>
-            </Block>
           </Block>
 
           <Divider margin={[theme.sizes.base, theme.sizes.base * 2]} />
 
-          <Block style={styles.sliders}>
+          {/* <Block style={styles.sliders}>
             <Block margin={[10, 0]}>
               <Text gray2 style={{ marginBottom: 10 }}>Budget</Text>
               <Slider
@@ -135,19 +138,7 @@ class Settings extends Component {
             </Block>
           </Block>
 
-          <Divider />
-
-          <Block style={styles.toggles}>
-            <Block row center space="between" style={{ marginBottom: theme.sizes.base * 2 }}>
-              <Text gray2>Notifications</Text>
-              <Switch
-                value={this.state.notifications}
-                onValueChange={value => this.setState({ notifications: value })}
-              />
-            </Block>
-          </Block>
-
-          <Divider margin={[theme.sizes.base, theme.sizes.base * 2]} />
+          <Divider /> */}
           
           <Block middle style={styles.toggles}>
             <Button gradient onPress={() => this.handleLogOut()}>

@@ -3,12 +3,7 @@ import { Dimensions, Image, StyleSheet, ScrollView, TouchableOpacity } from 'rea
 import firebase from 'firebase';
 import { Card, Badge, Button, Block, Text } from '../components';
 import { theme, mocks } from '../constants';
-import OrderIcon from '../assets/icons/order.png'
-import serivceIcon from '../assets/icons/service.png'
-import earnIcon from '../assets/icons/earn.png'
-import addOrderIcon from '../assets/icons/add_order.png'
-
-
+import userIcon from '../assets/icons/back.png'
 const { width } = Dimensions.get('window');
 
 class Browse extends Component {
@@ -24,11 +19,11 @@ class Browse extends Component {
   componentDidMount() {
     this.setState({ categories: this.props.categories });
 
-    firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        navigation.navigate('Browse')
-      }
-   });
+  //   firebase.auth().onAuthStateChanged((user) => {
+  //     if (!user) {
+  //       navigation.navigate('Browse')
+  //     }
+  //  });
     
   }
 
@@ -81,69 +76,49 @@ class Browse extends Component {
         {/* <Block flex={false} row style={styles.tabs}>
           {tabs.map(tab => this.renderTab(  ))}
         </Block> */}
+          <Block flex={false} row center space="between" style={styles.subHeader}>
+            <Text h3>Your Orders</Text>
+          </Block>
 
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{ paddingVertical: theme.sizes.base * 2}}
         >
 
+              
 
-          {/* <Block flex={false} row space="between" style={styles.categories}>
-            {categories.map(category => (
-              <TouchableOpacity
-                key={category.name}
-                onPress={() => navigation.navigate('Explore', { category })}
-              >
+              <Block flex={false} row space="between" style={styles.categories}>
                 <Card center middle shadow style={styles.category}>
                   <Badge margin={[0, 0, 15]} size={50} color="rgba(41,216,143,0.20)">
-                    <Image source={category.image} />
+                    <Image source={userIcon} />
                   </Badge>
-                  <Text medium height={20}>{category.name}</Text>
-                  <Text gray caption>{category.count} products</Text>
+                  <Text medium height={20}>Date :2019/09/14</Text>
+                  <Text gray caption>4 People</Text>
                 </Card>
-              </TouchableOpacity>
-            ))}
-          </Block> */}
-              <Block flex={false} row space="between" style={styles.categories}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Orders')}
-              >
+
                 <Card center middle shadow style={styles.category}>
-                  <Badge margin={[0, 0, 15]} size={50} color="#FFFFFF">
-                    <Image source={OrderIcon} />
+                  <Badge margin={[0, 0, 15]} size={50} color="rgba(41,216,143,0.20)">
+                    <Image source={userIcon} />
                   </Badge>
-                  <Text medium height={20}>Orders</Text>
+                  <Text medium height={20}>Date :2019/10/12</Text>
+                  <Text gray caption>12 People</Text>
                 </Card>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Service')}
-              >
+
                 <Card center middle shadow style={styles.category}>
-                  <Badge margin={[0, 0, 15]} size={50} color="#FFFFFF">
-                    <Image source={serivceIcon} />
+                  <Badge margin={[0, 0, 15]} size={50} color="rgba(41,216,143,0.20)">
+                    <Image source={userIcon} />
                   </Badge>
-                  <Text medium height={20}>Service</Text>
+                  <Text medium height={20}>Date :2019/11/22</Text>
+                  <Text gray caption>2 People</Text>
                 </Card>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Earnings')}
-              >
+
                 <Card center middle shadow style={styles.category}>
-                  <Badge margin={[0, 0, 15]} size={50} color="#FFFFFF">
-                    <Image source={earnIcon} />
+                  <Badge margin={[0, 0, 15]} size={50} color="rgba(41,216,143,0.20)">
+                    <Image source={userIcon} />
                   </Badge>
-                  <Text medium height={20}>Earnings</Text>
+                  <Text medium height={20}>Date :2020/11/12</Text>
+                  <Text gray caption>3 People</Text>
                 </Card>
-                </TouchableOpacity>
-                <TouchableOpacity
-                onPress={() => navigation.navigate('Explore', { category })}
-              ><Card center middle shadow style={styles.category}>
-                  <Badge margin={[0, 0, 15]} size={50} color="#FFFFFF">
-                    <Image source={addOrderIcon} />
-                  </Badge>
-                  <Text medium height={20}>New Order</Text>
-                </Card>
-                </TouchableOpacity>
               </Block>
         </ScrollView>
       </Block>

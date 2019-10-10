@@ -42,7 +42,7 @@ class HotelRoomDetails extends Component {
 
     Alert.alert(
       'Success!',
-      'Your account has been created,Now add the hotel details please',
+      'Room type added',
       [
         {
           text: 'Add Another', onPress: () => {
@@ -51,18 +51,7 @@ class HotelRoomDetails extends Component {
         },
         {
           text: 'Finish', onPress: () => {
-              Alert.alert(
-                'Success!',
-                'Your account creation is compleat.Our team will contact you with the login details',
-                [
-                  {
-                    text: 'Continue', onPress: () => {
-                        navigation.navigate('Welcome')
-                    }
-                  }
-                ],
-                { cancelable: false }
-              )
+            navigation.navigate('Service');
           }
         }
       ],
